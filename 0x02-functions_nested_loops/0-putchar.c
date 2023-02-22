@@ -1,11 +1,10 @@
 #include "main.h"
 
 /**
- * main - This is the main fuction
- * description - Prints putchar
- * Return: always (0) success
-*/
-
+ * main - Prints "y" followed by a new line.
+ *
+ * Return: Always 0.
+ */
 int main(void)
 {
 	_putchar('_');
@@ -20,5 +19,3 @@ int main(void)
 
 	return (0);
 }
-
-
