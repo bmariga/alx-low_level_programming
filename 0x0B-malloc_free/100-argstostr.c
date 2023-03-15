@@ -46,4 +46,7 @@ char *argstostr(int ac, char **av)
 		if (ia < c - 1)
 			all[ia] = av[i][j];
 	}
+	all[ia] = '\0';
 
+	return (all);
+}

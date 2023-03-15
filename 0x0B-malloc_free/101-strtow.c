@@ -88,4 +88,14 @@ char **strtow(char *str)
 					free_array(string, i);
 					return (NULL);
 				}
+				break;
+			}
+		}
+
+		for (j = 0; s <= word; s++, j++)
+			string[i][j] = str[s];
+		string[i][j] = '\0';
+	}
+	string[i] = NULL;
+	return (string);
 }
