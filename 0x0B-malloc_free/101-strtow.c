@@ -1,52 +1,91 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
- * argstostr - concatenates all the arguments of a program.
- * @ac: argument count.
- * @av: argument vector.
+ * wordcount - get word count from string
+ *             without spaces
  *
- * Return: pointer of an array of char
- */
-char *argstostr(int ac, char **av)
+ * @str: string to count words present
+ *
+ * Return: The number of words
+*/
+
+int wordcount(char *str)
 {
-	char *all;
-	int c, i, j, ia;
+	int words = 0;
 
-	if (ac == 0)
-		return (NULL);
-
-	for (c = i = 0; i < ac; i++)
+	while (*str != '\0')
 	{
-		if (av[i] == NULL)
-			return (NULL);
-
-		for (j = 0; av[i][j] != '\0'; j++)
-			c++;
-		c++;
-	}
-
-	all = malloc((c + 1) * sizeof(char));
-
-	if (all == NULL)
-	{
-		free(all);
-		return (NULL);
-	}
-
-	for (i = j = ia = 0; ia < c; j++, ia++)
-	{
-		if (av[i][j] == '\0')
+		/*skip spaces*/
+		if (*str == ' ')
+			str++;
+		else
 		{
-			all[ia] = '\n';
-			i++;
-			ia++;
-			j = 0;
+			/*count words*/
+			while (*str != ' ' && *str != '\0')
+				str++;
+			words++;
 		}
-		if (ia < c - 1)
-			all[ia] = av[i][j];
 	}
-	all[ia] = '\0';
+	return (words);
+}
 
-	return (all);
+/**
+ * free_array - free arr[i]
+ *
+ * @ar: array to free
+ * @i: array[i]
+ *
+ * Return: nothing
+*/
+
+void free_array(char **ar, int i)
+{
+	if (ar != NULL && i != 0)
+	{
+		while (i >= 0)
+		{
+			free(ar[i]);
+			i--;
+		}
+		free(ar);
+	}
+}
+
+/**
+ * strtow - split a string to words
+ *
+ * @str: string to split.
+ *
+ * Return: NULL if it fails
+*/
+
+char **strtow(char *str)
+{
+	int i, s, j, str_l, word;
+	char **string;
+
+	if (str == NULL || *str == '\0')
+		return (NULL);
+
+	str_l = wordcount(str);
+	/*return null if str_l == 0 || new == NULL*/
+	string = malloc((str_l + 1) * sizeof(char *));
+	if (str_l == 0 || string == NULL)
+		return (NULL);
+
+	for (i = s = 0; i < str_l; i++)
+	{
+		for (word = s; str[word] != '\0'; word++)
+		{
+			if (str[word] == ' ')
+				s++;
+
+			if (str[word] != ' ' && (str[word + 1] == ' ' || str[word + 1] == '\0'))
+			{
+				string[i] = malloc((word - s + 2) * sizeof(char));
+				if (string[i] == NULL)
+				{
+					free_array(string, i);
+					return (NULL);
+				}
 }
