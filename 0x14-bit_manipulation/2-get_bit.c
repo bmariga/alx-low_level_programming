@@ -6,25 +6,23 @@
  * @n: unsigned long int input.
  * @index: index of the bit.
  *
- * Return: value of the bit, or -1 if index is invalid.
+ * Return: value of the bit.
  */
+
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int mask = 1;
+	unsigned int s;
 
-	// Check if index is valid
-	if (index >= sizeof(unsigned long int) * 8)
+	if (n == 0 && index < 64)
+		return (0);
+
+	for (s = 0; s <= 63; n >>= 1, s++)
 	{
-		printf("Error: Invalid bit index\n");
-		return -1;
+		if (index == s)
+		{
+			return (n & 1);
+		}
 	}
 
-	// Shift the mask to the left by the index
-	mask = mask << index;
-
-	// Bitwise AND operation to extract the value of the bit at the index
-	int bit = (n & mask) >> index;
-
-	return bit;
+	return (-1);
 }
-

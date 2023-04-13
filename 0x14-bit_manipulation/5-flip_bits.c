@@ -8,21 +8,17 @@
  *
  * Return: number of bits.
  */
+
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int xor_result = n ^ m;
-	unsigned int control = 0;
+	unsigned int control;
 
-	// Count the number of set bits in the XOR result
-	while (xor_result)
+	for (control = 0; n || m; n >>= 1, m >>= 1)
 	{
-		// Use bitwise AND operation to check if the least significant bit is set
-		if (xor_result & 1)
+		if ((n & 1) != (m & 1))
 			control++;
-		// Right shift XOR result to move to the next bit
-		xor_result >>= 1;
 	}
 
-	return control;
+	return (control);
 }
 
