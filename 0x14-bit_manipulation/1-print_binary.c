@@ -1,19 +1,22 @@
-#include <stdio.h>
+#include "main.h"
 
-void print_binary(unsigned int num) {
-    // Calculate the number of bits in an unsigned int
-    int num_bits = sizeof(unsigned int) * 8;
-
-    // Loop through each bit from left to right
-    for (int i = num_bits - 1; i >= 0; i--) {
-        // Extract the i-th bit using bitwise shift and bitwise AND operations
-        unsigned int bit = (num >> i) & 1;
-
-        // Print the bit (0 or 1)
-        printf("%u", bit);
-    }
-
-    // Print a newline character to end the line
-    printf("\n");
+/**
+ * print_binary - prints the binary representation
+ * of a number.
+ * @n: unsigned long int.
+ *
+ * Return: no return.
+ */
+void print_binary(unsigned long int n)
+{
+	if (n >> 0)
+	{
+		if (n >> 1)
+			print_binary(n >> 1);
+		_putchar((n & 1) + '0');
+	}
+	else
+	{
+		_putchar('0');
+	}
 }
-
