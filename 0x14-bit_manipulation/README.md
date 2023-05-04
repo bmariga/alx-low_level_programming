@@ -1,2 +1,1 @@
-Bit Mnipulation
-Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a byte.
+Bit manipulation is the act of algorithmically manipulating bits or other piece of data shorter than a byte.
