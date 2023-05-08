@@ -2,9 +2,7 @@
 #define MAIN_N
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
-#include <elf.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
